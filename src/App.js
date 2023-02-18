@@ -15,6 +15,10 @@ const charizard = {
 const App = () => {
 
     const [pokemonData, setPokemonData] = useState({});
+    const [filter, setFilter] = useState("");
+
+
+
 
     useEffect(() => {
         axios
@@ -36,36 +40,39 @@ const App = () => {
 
             });
 
-    
+
     }, []);
 
 
     const makePokemon = (pokemonId) => {
         const { id, name, sprite } = pokemonData[pokemonId];
-        
-        return <PokeBlock pokemonId={id} name={name} key={pokemonId}/>
+
+        return <PokeBlock pokemonId={id} name={name} key={pokemonId} />
     }
 
     return (
 
-        
+
         <div className="app">
             <h1>Pokedex</h1>
 
             <div className="searchbar">
                 <input
-                    placeholder="Search for a pokemon!"           
+                    placeholder="Search for a pokemon!"
+                    value={filter}
+                    onChange={(e) => setFilter(e.target.value)}
                 />
             </div>
 
             <div className="container">
 
                 <div className="pokemons">
-                {Object.keys(pokemonData).map((pokemonId) => 
-                makePokemon(pokemonId)
-                )}
-                </div>     
-                
+                    {Object.keys(pokemonData).map((pokemonId) =>
+                        pokemonData[pokemonId].name.includes(filter) &&
+                        makePokemon(pokemonId)
+                    )}
+                </div>
+
             </div>
 
         </div>
