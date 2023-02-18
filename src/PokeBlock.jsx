@@ -1,22 +1,26 @@
 import React from 'react';
 
 
-const PokeBlock = ({ pokemon }) => {
+const PokeBlock = ({ pokemonId, name }) => {
+
+
     return (
         <div className = "pokeBlock">
 
             <div>
-                <p>{pokemon.id}</p>
+                {pokemonId}
             </div>
 
             <div>
 
-                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}/>
-            </div>
-            <div>
-                <p>{pokemon.name}</p>
+                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`}/>
+     
             </div>
 
+            <div>
+                {name}
+            </div>
+            
         </div>
     )
 }
