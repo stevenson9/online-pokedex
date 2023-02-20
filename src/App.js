@@ -64,7 +64,7 @@ const App = () => {
                 <input
                     placeholder="Search for a pokemon!"
                     value={filter}
-                    onChange={(e) => { setFilter(e.target.value); setSearchNum(e.target.value); setNum(0) }}
+                    onChange={(e) => { setFilter(e.target.value.toLowerCase()); setSearchNum(e.target.value); setNum(0) }}
                 />
 
             
