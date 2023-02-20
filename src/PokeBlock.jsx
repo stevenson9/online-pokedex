@@ -1,8 +1,17 @@
 import React from 'react';
 
 
-const PokeBlock = ({ pokemonId, name }) => {
 
+const PokeBlock = ({ pokemonId, name, shiny }) => {
+
+    const pickImage = () => {
+        if (shiny) {
+            return <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemonId}.png`}/>
+        }
+    
+        return <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`}/>
+    }
+    
 
     return (
         <div className = "pokeBlock">
@@ -11,7 +20,9 @@ const PokeBlock = ({ pokemonId, name }) => {
                 {pokemonId}
             </div>
             <div>
-                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`}/>
+                
+                {pickImage()}
+                
             </div>
 
             <div>

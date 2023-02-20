@@ -11,8 +11,9 @@ const App = () => {
     const [pokemonData, setPokemonData] = useState({});
     const [filter, setFilter] = useState("");
     let [num, setNum] = useState(0);
+    const [shiny, setShiny] = useState(false);
 
-    const List = []
+    const List = [];
 
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const App = () => {
 
     const makePokemon = (pokemonId) => {
         const { id, name } = pokemonData[pokemonId];
-        List.push(<PokeBlock pokemonId={id} name={name} key={pokemonId} />);
+        List.push(<PokeBlock pokemonId={id} name={name} shiny={shiny} key={pokemonId} />);
     }
 
     const controlIndexNext = () => {
@@ -74,20 +75,33 @@ const App = () => {
                         pokemonData[pokemonId].name.includes(filter) &&
                         makePokemon(pokemonId)
                     )}
-                    {List[num]}
+
+                    {List.length > 0 ? (
+                        List[num]
+                    ) : (
+                        <p>There's no pokemon that match your input.</p>
+                    )}
+                
+         
 
                 </div>
             </div>
 
-            <div className="increaseIndex" onClick={() => controlIndexNext()}>
-                <button >
+            <div className="increaseIndex" >
+                <button onClick={() => controlIndexNext()}>
                     next
                 </button>
             </div>
 
-            <div className="decreaseIndex" onClick={() => controlIndexPrevious()}>
-                <button >
+            <div className="decreaseIndex" >
+                <button onClick={() => controlIndexPrevious()}>
                     previous
+                </button>
+            </div>
+
+            <div className="shinyButton">
+                <button onClick={() => setShiny(!shiny)}>
+                    shiny
                 </button>
             </div>
 
