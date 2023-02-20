@@ -1,0 +1,7 @@
+.pokeBlock {
+    display: inline-block;
+    text-align: center;
+}
+.pokeBlock img {
+    display: block;
+}

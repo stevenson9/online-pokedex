@@ -5,19 +5,14 @@ import PokeBlock from './PokeBlock';
 import mockData from './mockData';
 import axios from 'axios';
 
-const API_URL = "https://pokeapi.co/api/v2/"
-
-const charizard = {
-    "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
-
-}
 
 const App = () => {
 
     const [pokemonData, setPokemonData] = useState({});
     const [filter, setFilter] = useState("");
+    let [num, setNum] = useState(0);
 
-
+    const List = []
 
 
     useEffect(() => {
@@ -31,28 +26,35 @@ const App = () => {
                     newPokemonData[index + 1] = {
                         id: index + 1,
                         name: pokemon.name,
-                        sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`
                     };
                 });
-
                 setPokemonData(newPokemonData);
-
-
             });
-
-
     }, []);
 
 
     const makePokemon = (pokemonId) => {
-        const { id, name, sprite } = pokemonData[pokemonId];
-
-        return <PokeBlock pokemonId={id} name={name} key={pokemonId} />
+        const { id, name } = pokemonData[pokemonId];
+        List.push(<PokeBlock pokemonId={id} name={name} key={pokemonId} />);
     }
 
+    const controlIndexNext = () => {
+        if (num + 1 == List.length) {
+            return setNum(0);
+        }
+        setNum(num + 1);
+        console.log(List)
+    }
+
+    const controlIndexPrevious = () => {
+        if (num - 1 == -1) {
+            return setNum(List.length - 1);
+        }
+        setNum(num - 1);
+    }
+
+
     return (
-
-
         <div className="app">
             <h1>Pokedex</h1>
 
@@ -60,19 +62,33 @@ const App = () => {
                 <input
                     placeholder="Search for a pokemon!"
                     value={filter}
-                    onChange={(e) => setFilter(e.target.value)}
+                    onChange={(e) => { setFilter(e.target.value); setNum(0) }}
                 />
             </div>
 
             <div className="container">
 
                 <div className="pokemons">
+
                     {Object.keys(pokemonData).map((pokemonId) =>
                         pokemonData[pokemonId].name.includes(filter) &&
                         makePokemon(pokemonId)
                     )}
-                </div>
+                    {List[num]}
 
+                </div>
+            </div>
+
+            <div className="increaseIndex" onClick={() => controlIndexNext()}>
+                <button >
+                    next
+                </button>
+            </div>
+
+            <div className="decreaseIndex" onClick={() => controlIndexPrevious()}>
+                <button >
+                    previous
+                </button>
             </div>
 
         </div>

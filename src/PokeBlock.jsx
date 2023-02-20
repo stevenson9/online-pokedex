@@ -10,17 +10,13 @@ const PokeBlock = ({ pokemonId, name }) => {
             <div>
                 {pokemonId}
             </div>
-
             <div>
-
                 <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`}/>
-     
             </div>
 
             <div>
                 {name}
             </div>
-            
         </div>
     )
 }
