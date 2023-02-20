@@ -2,8 +2,13 @@ import { useState, useEffect } from 'react';
 
 import './App.css';
 import PokeBlock from './PokeBlock';
-import mockData from './mockData';
+
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 
 const App = () => {
@@ -58,59 +63,67 @@ const App = () => {
 
     return (
         <div className="app">
-            <h1>Pokedex</h1>
 
-            <div className="searchbar">
-                <input
-                    placeholder="Search for a pokemon!"
-                    value={filter}
-                    onChange={(e) => { setFilter(e.target.value.toLowerCase()); setSearchNum(e.target.value); setNum(0) }}
-                />
+            <div class="container justify-content-center">
 
-            
-            </div>
 
-            <div className="container">
+                <h1 class="text-center mt-5 pt-5">Pokedex</h1>
 
-                <div className="pokemons">
+                <Row>
 
-        
-                    {Object.keys(pokemonData).map((pokemonId) =>
-                        (pokemonData[pokemonId].name.includes(filter) || 
-                        (pokemonData[pokemonId].id+'').includes(searchNum))
-                         && 
-                        makePokemon(pokemonId)
-                    )}
+                    <div className="searchbar">
+                        <input
+                            placeholder="Search for a pokemon!"
+                            value={filter}
+                            onChange={(e) => { setFilter(e.target.value.toLowerCase()); setSearchNum(e.target.value); setNum(0) }}
+                        />
 
-     
-          
-                    {List.length > 0 ? (
-                        List[num]
-                    ) : (
-                        <p>There's no pokemon that match your input.</p>
-                    )}
-                
-         
 
+                    </div>
+
+                </Row>
+
+                <div className="container">
+
+                    <Row>
+
+                        <div className="pokemons">
+
+                            {Object.keys(pokemonData).map((pokemonId) =>
+                                (pokemonData[pokemonId].name.includes(filter) ||
+                                    (pokemonData[pokemonId].id + '').includes(searchNum))
+                                &&
+                                makePokemon(pokemonId)
+                            )}
+
+                            {List.length > 0 ? (
+                                List[num]
+                            ) : (
+                                <p>There's no pokemon that match your input.</p>
+                            )}
+
+                        </div>
+                    </Row>
                 </div>
-            </div>
 
-            <div className="increaseIndex" >
-                <button onClick={() => controlIndexNext()}>
-                    next
-                </button>
-            </div>
+                <div className="increaseIndex" >
+                    <button onClick={() => controlIndexNext()}>
+                        next
+                    </button>
+                </div>
 
-            <div className="decreaseIndex" >
-                <button onClick={() => controlIndexPrevious()}>
-                    previous
-                </button>
-            </div>
+                <div className="decreaseIndex" >
+                    <button onClick={() => controlIndexPrevious()} class="btn btn-primary">
+                        previous
+                    </button>
+                </div>
 
-            <div className="shinyButton">
-                <button onClick={() => setShiny(!shiny)}>
-                    shiny
-                </button>
+                <div className="shinyButton">
+                    <button onClick={() => setShiny(!shiny)}>
+                        shiny
+                    </button>
+                </div>
+
             </div>
 
         </div>

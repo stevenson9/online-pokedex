@@ -1,7 +1,10 @@
-.pokeBlock {
-    display: inline-block;
-    text-align: center;
+
+.container {
+    background-color: #ecf0f1;
 }
-.pokeBlock img {
-    display: block;
+
+.pokeimage {
+    max-width: 96px;
+    max-height: 96px;
 }
+
