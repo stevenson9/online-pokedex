@@ -65,17 +65,22 @@ const App = () => {
                     value={filter}
                     onChange={(e) => { setFilter(e.target.value); setNum(0) }}
                 />
+
+            
             </div>
 
             <div className="container">
 
                 <div className="pokemons">
 
+        
                     {Object.keys(pokemonData).map((pokemonId) =>
-                        pokemonData[pokemonId].name.includes(filter) &&
+                        pokemonData[pokemonId].name.includes(filter) && 
                         makePokemon(pokemonId)
                     )}
 
+     
+          
                     {List.length > 0 ? (
                         List[num]
                     ) : (
