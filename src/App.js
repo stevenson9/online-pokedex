@@ -64,70 +64,79 @@ const App = () => {
     return (
         <div className="app">
 
-            <div class="container justify-content-center">
-
-
-                <h1 class="text-center mt-5 pt-5">Pokedex</h1>
-
+            <div class="small-middle-container shadow rounded">
                 <Row>
 
-                    <div className="searchbar">
-                        <input
-                            placeholder="Search for a pokemon!"
-                            value={filter}
-                            onChange={(e) => { setFilter(e.target.value.toLowerCase()); setSearchNum(e.target.value); setNum(0) }}
-                        />
+                    <Col className="index">
+                        <div>
+                            <button onClick={() => controlIndexPrevious()} type="button" class="clicker rounded">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </Col>
+
+                    <Col className="middle">
+
+                        <Row>
+                            <h1 className="text-center pt-1 display-2"><span class="poke">Poke</span>dex</h1>
+                        </Row>
+
+                        <Row >
+                            <div className="searchBar ">
+                                <input
+                                    placeholder="Search for a pokemon!"
+                                    value={filter}
+                                    onChange={(e) => { setFilter(e.target.value.toLowerCase()); setSearchNum(e.target.value); setNum(0) }}
+                                    className="rounded form-outline"
+                                />
+                            </div>
+
+                        </Row>
+                        <Row>
+                            <div className="pokemons">
+
+                                {Object.keys(pokemonData).map((pokemonId) =>
+                                    (pokemonData[pokemonId].name.includes(filter) ||
+                                        (pokemonData[pokemonId].id + '').includes(searchNum))
+                                    &&
+                                    makePokemon(pokemonId)
+                                )}
+
+                                {List.length > 0 ? (
+                                    List[num]
+                                ) : (
+                                    <p>There's no pokemon that match your input.</p>
+                                )}
+
+                            </div>
+                        </Row>
 
 
-                    </div>
+
+                        <Row>
+                            <div className="shinyButton">
+                                <button onClick={() => setShiny(!shiny)} class="toggleShiny rounded">
+                                shiny
+                                </button>
+                            </div>
+                        </Row>
+                    </Col>
+
+
+                    <Col className="index">
+                        <div class="increaseIndex">
+                            <button onClick={() => controlIndexNext()} type="button" class="clicker rounded">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </Col>
 
                 </Row>
-
-                <div className="container">
-
-                    <Row>
-
-                        <div className="pokemons">
-
-                            {Object.keys(pokemonData).map((pokemonId) =>
-                                (pokemonData[pokemonId].name.includes(filter) ||
-                                    (pokemonData[pokemonId].id + '').includes(searchNum))
-                                &&
-                                makePokemon(pokemonId)
-                            )}
-
-                            {List.length > 0 ? (
-                                List[num]
-                            ) : (
-                                <p>There's no pokemon that match your input.</p>
-                            )}
-
-                        </div>
-                    </Row>
-                </div>
-
-                <div className="increaseIndex" >
-                    <button onClick={() => controlIndexNext()}>
-                        next
-                    </button>
-                </div>
-
-                <div className="decreaseIndex" >
-                    <button onClick={() => controlIndexPrevious()} class="btn btn-primary">
-                        previous
-                    </button>
-                </div>
-
-                <div className="shinyButton">
-                    <button onClick={() => setShiny(!shiny)}>
-                        shiny
-                    </button>
-                </div>
-
             </div>
-
         </div>
     )
 }
 
 export default App;
+
+

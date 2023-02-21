@@ -18,7 +18,7 @@ const PokeBlock = ({ pokemonId, name, shiny }) => {
 
     return (
         <div className="pokeBlock">
-            <Stack gap={3}>
+            <Stack gap={2}>
                 <div>
 
                     {pokemonId}
