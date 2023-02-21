@@ -29,6 +29,7 @@
 	margin: auto;
     margin-top: 10%;
 	width: 35%;
+    height: 375px;
     min-width: 500px;
     text-align:center;
     background-color: white;
@@ -44,6 +45,7 @@
     color: white;
     border: none;
     padding: 0.25em 1em 0.25em 1em ;
+    
 
 }
 
